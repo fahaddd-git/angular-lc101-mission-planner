@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-crew',
   templateUrl: './crew.component.html',
@@ -13,9 +14,42 @@ export class CrewComponent implements OnInit {
     {name: "Ellen Ochoa", firstMission: true}
   ];
 
+  memberBeingEdited: object = null;
+  
+
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  add(memberName: string, isFirst: boolean) {
+    let nameArray: string[] = []
+    for(let i = 0; i< this.crew.length; i++){
+      nameArray.push(this.crew[i]['name'])
+    }
+    if(!nameArray.includes(memberName)){
+  
+   this.crew.push({name: memberName, firstMission: isFirst});
+    }
+    
+  }
+    
+    
+      
+
+  remove(member: object) {
+    let index = this.crew.indexOf(member);
+    this.crew.splice(index, 1);
+  }
+
+edit(member: object){
+  this.memberBeingEdited = member;
+}
+  
+save(name: string, member: object) {
+  member['name'] = name;
+  this.memberBeingEdited = null;
   }
 
 }
