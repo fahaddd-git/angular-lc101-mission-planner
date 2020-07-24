@@ -53,6 +53,11 @@ emptyHold(){
   this.cargoMass = 0
 }
 
+removeEquipment(equipObj: object){
+  this.cargoHold.splice(this.cargoHold.indexOf(equipObj), 1)
+  this.cargoMass = this.cargoMass - equipObj['mass']
+}
+
 
 }
    
